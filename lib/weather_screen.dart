@@ -19,17 +19,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         centerTitle: true,
         actions: [
-          /* GestureDetector(
-          onTap: () {
-            print('Refresh');
-          },
-          child: const Icon(Icons.refresh)) */
-          InkWell(
-          onTap: () {
-            print('Refresh');
-          },
-          child: const Icon(Icons.refresh))
-          ],
+          IconButton(
+            onPressed: () {
+              print('object');
+            },
+            icon: Icon(Icons.refresh),
+          ),
+        ],
       ),
     );
   }
