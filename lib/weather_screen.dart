@@ -13,8 +13,23 @@ class _WeatherScreenState extends State<WeatherScreen> {
     return Scaffold(
       //backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('Weather App',style: TextStyle(fontWeight: FontWeight.bold),),
+        title: const Text(
+          'Weather App',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
+        actions: [
+          /* GestureDetector(
+          onTap: () {
+            print('Refresh');
+          },
+          child: const Icon(Icons.refresh)) */
+          InkWell(
+          onTap: () {
+            print('Refresh');
+          },
+          child: const Icon(Icons.refresh))
+          ],
       ),
     );
   }
