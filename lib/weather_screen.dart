@@ -32,6 +32,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //main card
             SizedBox(
@@ -66,12 +67,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           const SizedBox(
                             height: 16,
                           ),
-                          const Text('Rain',style: TextStyle(fontSize: 20),),
+                          const Text(
+                            'Rain',
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'Weather Forecast',
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
