@@ -27,6 +27,29 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
         ],
       ),
+      body: Column(
+        children: [
+          //main card
+          const Placeholder(
+            fallbackHeight: 250,
+            //child: const Text('Main Card'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          // weather forecast card
+          const Placeholder(
+            fallbackHeight: 150,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          // sweather additonal information
+          const Placeholder(
+            fallbackHeight: 150,
+          ),
+        ],
+      ),
     );
   }
 }
