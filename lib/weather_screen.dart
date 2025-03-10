@@ -36,6 +36,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
               width: double.infinity,
               child: Card(
                 elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: Column(
