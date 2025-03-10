@@ -101,12 +101,23 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   HourlyForecastItem(),
                   HourlyForecastItem(),
                   HourlyForecastItem(),
-                 ],
+                ],
               ),
             ),
             const SizedBox(
               height: 20,
             ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'Additional Information',
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            // weather additional information
             // sweather additonal information
             const Placeholder(
               fallbackHeight: 150,
