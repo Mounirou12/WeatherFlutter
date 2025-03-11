@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:weatherapp/additional_info.dart';
 import 'package:weatherapp/hourly_forecast_Item.dart';
+import 'package:http/http.dart' as http;
 
-class WeatherScreen extends StatefulWidget {
+class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
 
-  @override
-  State<WeatherScreen> createState() => _WeatherScreenState();
-}
+  Future getWeatherCurrent() async {
+    http.get(Uri.parse("uri"));
+  }
 
-class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,11 +99,31 @@ class _WeatherScreenState extends State<WeatherScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyForecastItem(hour: '00:00', temperature: '301.22', icon: Icons.cloud,),
-                  HourlyForecastItem(hour: '03:00', temperature: '300.52', icon: Icons.sunny,),
-                  HourlyForecastItem(hour: '06:00', temperature: '302.22', icon: Icons.cloud,),
-                  HourlyForecastItem(hour: '09:00', temperature: '300.12', icon: Icons.sunny,),
-                  HourlyForecastItem(hour: '12:00', temperature: '404:12', icon: Icons.cloud,),
+                  HourlyForecastItem(
+                    hour: '00:00',
+                    temperature: '301.22',
+                    icon: Icons.cloud,
+                  ),
+                  HourlyForecastItem(
+                    hour: '03:00',
+                    temperature: '300.52',
+                    icon: Icons.sunny,
+                  ),
+                  HourlyForecastItem(
+                    hour: '06:00',
+                    temperature: '302.22',
+                    icon: Icons.cloud,
+                  ),
+                  HourlyForecastItem(
+                    hour: '09:00',
+                    temperature: '300.12',
+                    icon: Icons.sunny,
+                  ),
+                  HourlyForecastItem(
+                    hour: '12:00',
+                    temperature: '404:12',
+                    icon: Icons.cloud,
+                  ),
                 ],
               ),
             ),
@@ -124,11 +144,23 @@ class _WeatherScreenState extends State<WeatherScreen> {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AdditionalIInfoItem(icon: Icons.water_drop_rounded, label: 'Humidity', value: '94',),
+                AdditionalIInfoItem(
+                  icon: Icons.water_drop_rounded,
+                  label: 'Humidity',
+                  value: '94',
+                ),
                 SizedBox(width: 10),
-                AdditionalIInfoItem(icon: Icons.air, label: 'Wind speed', value: '7.67',),
+                AdditionalIInfoItem(
+                  icon: Icons.air,
+                  label: 'Wind speed',
+                  value: '7.67',
+                ),
                 SizedBox(width: 10),
-                AdditionalIInfoItem(icon: Icons.beach_access, label: 'Pressure', value: '1006',),
+                AdditionalIInfoItem(
+                  icon: Icons.beach_access,
+                  label: 'Pressure',
+                  value: '1006',
+                ),
               ],
             ),
           ],
