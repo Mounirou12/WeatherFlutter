@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weatherapp/additional_info.dart';
+import 'package:weatherapp/hourly_forecast_Item.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -33,6 +35,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //main card
             SizedBox(
@@ -51,7 +54,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       child: Column(
                         children: [
                           const Text(
-                            '300 °F',
+                            '300K',
                             style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -89,23 +92,23 @@ class _WeatherScreenState extends State<WeatherScreen> {
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 8,
             ),
             // weather forecast card
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
+                  HourlyForecastItem(hour: '00:00', temperature: '301.22', icon: Icons.cloud,),
+                  HourlyForecastItem(hour: '03:00', temperature: '300.52', icon: Icons.sunny,),
+                  HourlyForecastItem(hour: '06:00', temperature: '302.22', icon: Icons.cloud,),
+                  HourlyForecastItem(hour: '09:00', temperature: '300.12', icon: Icons.sunny,),
+                  HourlyForecastItem(hour: '12:00', temperature: '404:12', icon: Icons.cloud,),
                 ],
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 8,
             ),
             Align(
               alignment: Alignment.centerLeft,
@@ -115,50 +118,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 8,
             ),
             // weather additional information
-            // sweather additonal information
-            const Placeholder(
-              fallbackHeight: 150,
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                AdditionalIInfoItem(icon: Icons.water_drop_rounded, label: 'Humidity', value: '94',),
+                SizedBox(width: 10),
+                AdditionalIInfoItem(icon: Icons.air, label: 'Wind speed', value: '7.67',),
+                SizedBox(width: 10),
+                AdditionalIInfoItem(icon: Icons.beach_access, label: 'Pressure', value: '1006',),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      child: Container(
-        width: 100,
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          children: [
-            Text(
-              '09:00',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Icon(
-              Icons.cloud,
-              size: 40,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text('300 °F', style: TextStyle(fontSize: 16)),
           ],
         ),
       ),
