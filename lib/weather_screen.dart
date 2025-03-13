@@ -15,7 +15,7 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  Future<Map<String,dynamic>> getWeatherCurrent() async {
+  Future<Map<String, dynamic>> getWeatherCurrent() async {
     try {
       String cityName = 'London';
       final res = await http.get(Uri.parse(
@@ -72,6 +72,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
           }
 
           final data = snapshot.data!;
+          final curentWeatherdata = data['list'][0];
+          final currentWeathertemp = curentWeatherdata['main']['temp'];
+          final currentSky = curentWeatherdata['weather'][0]['main'];
+          final currentWeatherPressure = curentWeatherdata['main']['pressure'];
+          final currentWeatherHumidity = curentWeatherdata['main']['humidity'];
+          final currentWeatherWindSpeed = curentWeatherdata['wind']['speed'];
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -95,7 +101,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                '300K',
+                                '$currentWeathertemp k',
                                 style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
@@ -104,15 +110,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              const Icon(
-                                Icons.cloud,
+                              Icon(
+                                currentSky == 'Clouds' || currentSky == 'Rain'
+                                    ? Icons.cloud
+                                    : Icons.sunny,
                                 size: 60,
                               ),
                               const SizedBox(
                                 height: 16,
                               ),
-                              const Text(
-                                'Rain',
+                              Text(
+                                currentSky.toString().toLowerCase(),
                                 style: TextStyle(fontSize: 20),
                               ),
                             ],
@@ -182,25 +190,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   height: 8,
                 ),
                 // weather additional information
-                const Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     AdditionalIInfoItem(
                       icon: Icons.water_drop_rounded,
                       label: 'Humidity',
-                      value: '94',
+                      value: currentWeatherHumidity.toString(),
                     ),
                     SizedBox(width: 10),
                     AdditionalIInfoItem(
                       icon: Icons.air,
                       label: 'Wind speed',
-                      value: '7.67',
+                      value: currentWeatherWindSpeed.toString(),
                     ),
                     SizedBox(width: 10),
                     AdditionalIInfoItem(
                       icon: Icons.beach_access,
                       label: 'Pressure',
-                      value: '1006',
+                      value: currentWeatherPressure.toString(),
                     ),
                   ],
                 ),
