@@ -148,31 +148,18 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      HourlyForecastItem(
-                        hour: '00:00',
-                        temperature: '301.22',
-                        icon: Icons.cloud,
-                      ),
-                      HourlyForecastItem(
-                        hour: '03:00',
-                        temperature: '300.52',
-                        icon: Icons.sunny,
-                      ),
-                      HourlyForecastItem(
-                        hour: '06:00',
-                        temperature: '302.22',
-                        icon: Icons.cloud,
-                      ),
-                      HourlyForecastItem(
-                        hour: '09:00',
-                        temperature: '300.12',
-                        icon: Icons.sunny,
-                      ),
-                      HourlyForecastItem(
-                        hour: '12:00',
-                        temperature: '404:12',
-                        icon: Icons.cloud,
-                      ),
+                      for (int i = 0; i < 39; i++)
+                        HourlyForecastItem(
+                          hour: data['list'][i + 1]['dt'].toString(),
+                          temperature:
+                              data['list'][i + 1]['main']['temp'].toString(),
+                          icon: data['list'][i + 1]['weather'][0]['mai + 1n'] ==
+                                      'Clouds' ||
+                                  data['list'][i +1]['weather'][0]['main'] ==
+                                      'Rain'
+                              ? Icons.cloud
+                              : Icons.sunny,
+                        ),
                     ],
                   ),
                 ),
@@ -190,7 +177,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   height: 8,
                 ),
                 // weather additional information
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     AdditionalIInfoItem(
