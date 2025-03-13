@@ -144,7 +144,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   height: 8,
                 ),
                 // weather forecast card
-                SingleChildScrollView(
+/*                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -155,13 +155,30 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               data['list'][i + 1]['main']['temp'].toString(),
                           icon: data['list'][i + 1]['weather'][0]['mai + 1n'] ==
                                       'Clouds' ||
-                                  data['list'][i +1]['weather'][0]['main'] ==
+                                  data['list'][i + 1]['weather'][0]['main'] ==
                                       'Rain'
                               ? Icons.cloud
                               : Icons.sunny,
                         ),
                     ],
                   ),
+                ), */
+                SizedBox(
+                  height: 130,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                      itemCount: 5, // exclude the first item (current weather)
+                      itemBuilder: (context, index) {
+                        final hourlyForecast = data['list'][index + 1];
+                        final hourlSky = data['list'][index + 1]['weather'][0]['main'];
+                        return HourlyForecastItem(
+                          hour: hourlyForecast['dt'].toString(),
+                          temperature: hourlyForecast['main']['temp'].toString(),
+                          icon: hourlSky == 'Clouds' || hourlSky == 'Rain'
+                              ? Icons.cloud
+                              : Icons.sunny,
+                        );
+                      }),
                 ),
                 const SizedBox(
                   height: 8,
