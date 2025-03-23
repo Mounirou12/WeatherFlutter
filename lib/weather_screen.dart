@@ -7,6 +7,8 @@ import 'package:weatherapp/additional_info.dart';
 import 'package:weatherapp/hourly_forecast_Item.dart';
 import 'package:http/http.dart' as http;
 import 'package:weatherapp/secrets.dart';
+import 'package:get/get.dart';
+import 'package:weatherapp/theme_services.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -40,22 +42,32 @@ class _WeatherScreenState extends State<WeatherScreen> {
     super.initState();
     weather = getWeatherCurrent();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.black,
       appBar: AppBar(
+        foregroundColor: context.theme.colorScheme.onSurface,
         title: const Text(
           'Weather App',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            ThemeService().switchTheme();
+          },
+          icon: Icon(
+              Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
+              size: 20,
+              color: Get.isDarkMode ? Colors.white : Colors.black),
+        ),
         actions: [
           IconButton(
             onPressed: () {
               setState(() {
-               // weather = getWeatherCurrent();
+                // weather = getWeatherCurrent();
               });
             },
             icon: Icon(Icons.refresh),
